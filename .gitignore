@@ -4,5 +4,6 @@ __pycache__
 *.pyc
 *.txt
 *.wav
+*.mp3
 !requirements.txt
 *.diff

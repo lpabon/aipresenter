@@ -31,7 +31,7 @@ class VoiceAIActorElevenLabs(VoiceAIActor):
             f'I am {self.name}. I am a {self.age} year old ' + \
             f'{self.gender} with a {self.accent} accent.'
 
-        logging.info(f"designing a voice for {self.name}")
+        logging.info(f"designing a voice for {self.name} gender:{self.gender}")
         self.voice_design = VoiceDesign(name=self.name,
                                         text=self.sample_text,
                                         gender=self.gender,

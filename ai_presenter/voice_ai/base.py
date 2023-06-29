@@ -52,8 +52,7 @@ class VoiceAI:
                                                 self.actors[name].age,
                                                 self.actors[name].accent,
                                                 1.99,
-                                                self.actors[name].
-                                                description)
+                                                self.actors[name].description)
                     self.characters[name] = self.new_actor(character_config)
                 except Exception:
                     character_config = VoiceConfig(name,

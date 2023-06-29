@@ -7,12 +7,13 @@ from ai_presenter.ai_presenter import Generators
 from ai_presenter.voice_ai.elevenlabs import ElevenLabs
 from ai_presenter.text_ai.chatgpt import TextChatGPT
 import logging
+import sys
 
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
     logging.info("Program starting")
-    reader = Reader('sample.yml')
+    reader = Reader('phas.yml')
     db = reader.get_db()
 
     text_fake = TextChatGPT(db)
