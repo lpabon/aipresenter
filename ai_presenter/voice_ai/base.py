@@ -1,6 +1,6 @@
 from ai_presenter.database import Database
 from ai_presenter.config.voice import VoiceConfig
-from elevenlabs import Iterator, Voice
+from elevenlabs import Iterator, Voice, Voices
 import json
 import logging
 
@@ -39,26 +39,27 @@ class VoiceAI:
 
     def create_character_db(self, line: str):
         json_string = line.strip()
-        data = (json.loads(json_string))
+        data = json.loads(json_string)
 
         for message in data['dialogue']:
             name = message['speaker']
+
             if name not in self.characters:
+                logging.info(f"creating character {name}")
                 try:
                     character_config = VoiceConfig(name,
-                                                   self.actors[name].gender,
-                                                   self.actors[name].age,
-                                                   self.actors[name].accent,
-                                                   1.99,
-                                                   self.actors[name].
-                                                   description)
+                                                self.actors[name].gender,
+                                                self.actors[name].age,
+                                                self.actors[name].accent,
+                                                1.99,
+                                                self.actors[name].description)
                     self.characters[name] = self.new_actor(character_config)
                 except Exception:
                     character_config = VoiceConfig(name,
-                                                   'male',
-                                                   'middle_aged',
-                                                   "british",
-                                                   1.99,
-                                                   f"This is the {name}")
+                                                'male',
+                                                'middle_aged',
+                                                "british",
+                                                1.99,
+                                                f"This is the {name}")
                     self.characters[name] = self.new_actor(character_config)
         return data

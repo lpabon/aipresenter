@@ -3,6 +3,9 @@ venv
 __pycache__
 *.pyc
 *.txt
+*.wav
+*.mp3
 !requirements.txt
 *.wav
 tests/text.json
+*.diff

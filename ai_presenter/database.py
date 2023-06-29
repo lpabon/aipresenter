@@ -1,3 +1,4 @@
+import logging
 from ai_presenter.config.config import Config
 
 
@@ -28,6 +29,7 @@ class Actor:
         self.height = data['height']
         self.gender = data['gender']
         self.accent = data['accent']
+        logging.info(f'actor: name:{self.name} gender:{self.gender}')
 
 
 class Scene:
