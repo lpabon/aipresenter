@@ -64,12 +64,6 @@ class ElevenLabs(VoiceAI):
         return None
 
     def new_actor(self, config) -> VoiceAIActor:
-        if config.name == 'narrator':
-            return VoiceAIDefaultActorElevenLabs(
-                config, 
-                Voice(voice_id='3jgDZB6IcVFpsetUCyvW', name='narrator'),
-            )
-
         v = self.__get_voice(config.name)
         if v == None:
             v = self.__get_voice(config.name.lower())
