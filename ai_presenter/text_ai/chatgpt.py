@@ -19,7 +19,7 @@ class ScriptChatGPT:
                 "content": "a plot with 4 scenes about a space war in Europa",
             },
             {
-                "role": "system",
+                "role": "assistant",
                 "content": '''
 config:
   ai_config:

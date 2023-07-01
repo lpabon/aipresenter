@@ -1,7 +1,7 @@
 from ai_presenter.voice_ai.base import VoiceAI, VoiceAIActor
 from ai_presenter.database import Database
 from ai_presenter.config.voice import VoiceConfig
-from elevenlabs import generate, save, Iterator, VoiceDesign, Voice
+from elevenlabs import generate, save, Iterator, VoiceDesign, Voice, voices
 from elevenlabs import set_api_key
 import logging
 import os
@@ -55,6 +55,13 @@ class ElevenLabs(VoiceAI):
     def __init__(self, db: Database):
         super().__init__(db)
         set_api_key(db.get_config().get_ai_config().get_elevenlabs_api_key())
+        self.voices = voices()
+
+    def __get_voice(self, name: str) -> Voice:
+        for v in self.voices:
+            if v.name == name:
+                return v
+        return None
 
     def new_actor(self, config) -> VoiceAIActor:
         if config.name == 'narrator':
@@ -62,6 +69,13 @@ class ElevenLabs(VoiceAI):
                 config, 
                 Voice(voice_id='3jgDZB6IcVFpsetUCyvW', name='narrator'),
             )
+
+        v = self.__get_voice(config.name)
+        if v == None:
+            v = self.__get_voice(config.name.lower())
+        if v != None:
+            return VoiceAIDefaultActorElevenLabs(config, v)
+
         return VoiceAIActorElevenLabs(config)
 
     # make narrator actor
